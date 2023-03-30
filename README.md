@@ -1,6 +1,6 @@
 # Robot-Project
 
-<li>const int pingPin = 13;    //trig pin ultrasonic -> digital 13<\li>
+<li>const int pingPin = 13;    //trig pin ultrasonic -> digital 13
 <li>int inPin = 12;            //echo pin ultrasonic -> digital 12<\li>
 <li>int buttonPin1 = 2;        //button open door pin -> digital 2<\li>
 <li>int buttonPin2 = 3;        //button EMERGENCY! pin -> digital 3<\li>
