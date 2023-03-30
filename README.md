@@ -6,8 +6,8 @@
 <li>int buttonPin2 = 3;        //button EMERGENCY! pin -> digital 3</li>
 <li>int LDR = A0;              //Light sensor pin -> analog 0</li>
 <li>int LDRReading = 0;              //value</li>
-<li>int led = 6;               //led night pin -> digital 6</li>
-<li>int led = 7;               //led EMERGENCY! pin -> digital 7</li>
+<li>int led1 = 6;               //led night pin -> digital 6</li>
+<li>int led2 = 7;               //led EMERGENCY! pin -> digital 7</li>
 <li>int buzzer = 8;            //buzzer pin -> digital 8</li>
 <li>int buttonState = 0;             //value</li>
 <li>int count_value =0;              //value</li>
