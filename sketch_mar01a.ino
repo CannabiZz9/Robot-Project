@@ -49,7 +49,7 @@ void loop()
   check();
   updatelcd();
   waitforcom();
-  
+
 
 }
 
@@ -58,7 +58,7 @@ long microsecondsToCentimeters(long microseconds)
   return microseconds / 29 / 2;
 }
 
-void check(){
+void check() {
   long duration, cm;
   currentState = digitalRead(buttonPin1);
   LDRReading = analogRead(LDR);
@@ -75,7 +75,7 @@ void check(){
     outputstate += " flood! ";
     flooddor = true;
   }
-  else if (cm >= 10){
+  else if (cm >= 10) {
     flooddor = false;
   }
   if (LDRReading > 300) {
@@ -90,8 +90,8 @@ void check(){
   }
 }
 
-void updatelcd(){
-  lcd.clear(); 
+void updatelcd() {
+  lcd.clear();
   lcd.setCursor(5, 0);
   lcd.print("state:    ");
   lcd.setCursor(0, 2);
@@ -99,9 +99,9 @@ void updatelcd(){
   delay(200);
 }
 
-void waitforcom(){
+void waitforcom() {
   buttonState = digitalRead(buttonPin1);
-  
+
   if (buttonState == HIGH && prestate == 0) {
     count_value++;
     delay(100);
@@ -112,43 +112,43 @@ void waitforcom(){
   if (count_value % 2 == 1) {
     checkenvi();
   }
-  else if (count_value % 2 == 0){
+  else if (count_value % 2 == 0) {
     checkenvi();
   }
-}
 
-
-void checkenvi(){
-  
-  if(flooddor && !isOpen){
+  if (flooddor) {
     opendoor50();
     //led buzzer
     isOpen = true;
   }
-  else{
-    if (isOpen){
+}
+
+
+void checkenvi() {
+
+  if (isOpen) {
     closedoor();
     isOpen = false;
-    }
-    if(!isOpen && daydoor && !nightdoor){
-      opendoor100();
-      isOpen = true;
-    }
-    if(!isOpen && !daydoor && nightdoor){
-      opendoor50();
-      isOpen = true;
-    }
+  }
+  else if (!isOpen && daydoor && !nightdoor) {
+    opendoor100();
+    isOpen = true;
+  }
+  else if (!isOpen && !daydoor && nightdoor) {
+    opendoor50();
+    //led
+    isOpen = true;
   }
 }
 
-void opendoor50(){
+void opendoor50() {
   //servohere
 }
 
-void opendoor100(){
+void opendoor100() {
   //servohere
 }
 
-void closedoor(){
+void closedoor() {
   //servohere
 }
