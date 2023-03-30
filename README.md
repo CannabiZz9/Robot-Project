@@ -20,3 +20,5 @@
 <li>bool stopdoor = false;           //value</li>
 <li>bool flooddor = false;           //value</li>
 <li>const int servoPin1 = 9;   //servo pin -> digital 9</li>
+<li>SDA -> Analog 4   //LCD Screen  </li>
+<li>SCL -> Analog 5   //LCD Screen  </li>
