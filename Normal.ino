@@ -103,11 +103,9 @@ void updatelcd() {
 
 void waitforcom() {
   buttonState = digitalRead(buttonPin1);
-  buttonState1 = digitalRead(buttonPin2);
   if (buttonState == HIGH && prestate == 0) {
     count_value++;
     Serial.println("Button press");
-    Serial.println(isOpen);
     checkenvi();
     delay(100);
     prestate = 1;
@@ -115,9 +113,8 @@ void waitforcom() {
     prestate = 0;
   }
   if (flooddor && !isOpen) {
-    opendoor50();
     digitalWrite(led2, HIGH);
-    delay(50);
+    opendoor50();
     digitalWrite(led2, LOW);
     delay(50);
     digitalWrite(led2, HIGH);
@@ -126,6 +123,16 @@ void waitforcom() {
     delay(50);
     digitalWrite(led2, HIGH);
     isOpen = true;
+  }
+  else if (flooddor && isOpen) {
+    digitalWrite(led2, HIGH);
+    digitalWrite(led2, LOW);
+    delay(50);
+    digitalWrite(led2, HIGH);
+    buzz();
+    digitalWrite(led2, LOW);
+    delay(50);
+    digitalWrite(led2, HIGH);
   }
   else if (!flooddor && isOpen) {
     digitalWrite(buzzer, LOW);
@@ -157,28 +164,96 @@ void checkenvi() {
 }
 
 void opendoor50() {
-  myservo1.write(180, 3); 
-  delay(1600); 
-  myservo1.write(90, 5); 
-  delay(600);
+  int i =0;
+  while (buttonState1 != 1){
+    buttonState1 = digitalRead(buttonPin2);
+    if(buttonState1 == 1){
+      Serial.println("Emergency! Button press");
+      outputstate = "reset to continue           Emergency!";
+      updatelcd();
+      myservo1.write(90, 100);
+      do{
+        digitalWrite(led1, LOW);
+        digitalWrite(led2, HIGH);
+        delay(500);
+        digitalWrite(led2, LOW);
+        delay(500);
+      }while(i < 99999999);
+    }
+    else{
+      if(i < 7){
+        myservo1.write(180, 7);
+        delay(500);
+        myservo1.write(90, 10);
+        delay(500);
+        i++;
+      }
+      else{
+        break; } 
+    }
+  }
 }
 
 void opendoor100() {
-  myservo1.write(180, 3); 
-  delay(1300); 
-  myservo1.write(90, 5); 
-  delay(600);
-  myservo1.write(180, 3); 
-  delay(1300); 
-  myservo1.write(90, 5); 
-  delay(600);
+  int i =0;
+  while (buttonState1 != 1){
+    buttonState1 = digitalRead(buttonPin2);
+    if(buttonState1 == 1){
+      Serial.println("Emergency! Button press");
+      outputstate = "reset to continue           Emergency!";
+      updatelcd();
+      myservo1.write(90, 100);
+      do{
+        digitalWrite(led1, LOW);
+        digitalWrite(led2, HIGH);
+        delay(500);
+        digitalWrite(led2, LOW);
+        delay(500);
+      }while(i < 99999999);
+    }
+    else{
+      if(i < 9){
+        myservo1.write(180, 8);
+        delay(500);
+        myservo1.write(90, 10);
+        delay(500);
+        i++;
+      }
+      else{ 
+        break; } 
+    }
+  }
 }
 
 void closedoor() {
-  myservo1.write(0, 3);
-  delay(1750);
-  myservo1.write(90, 5);
-  delay(1000);
+  int i =0;
+  while (buttonState1 != 1){
+    buttonState1 = digitalRead(buttonPin2);
+    if(buttonState1 == 1){
+      Serial.println("Emergency! Button press");
+      outputstate = "reset to continue           Emergency!";
+      updatelcd();
+      myservo1.write(90, 100);
+      do{
+        digitalWrite(led1, LOW);
+        digitalWrite(led2, HIGH);
+        delay(500);
+        digitalWrite(led2, LOW);
+        delay(500);
+      }while(i < 99999999);
+    }
+    else{
+      if(i < 8){
+        myservo1.write(0, 7);
+        delay(500);
+        myservo1.write(90, 10);
+        delay(500);
+        i++;
+      }
+      else{
+        break; } 
+    }
+  }
 }
 
 
